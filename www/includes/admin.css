@@ -2,31 +2,27 @@ body {
   margin: 0;
   padding: 0;
   font-family: Arial, Helvetica, Verdana, Tahoma, Sans-Serif, serif;
-  background: #ffe3e1;
+  background: #fff;
 }
 
-a, a:visited, a:hover {
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+a {
+  color: #0ba500;
+  text-decoration: none;
+}
+
+a:hover {
   color: #334d5c;
+  text-decoration: underline;
 }
 
 .color1 {
   color: #334d5c;
-}
-
-.color2 {
-  color: #d1126e;
-}
-
-.color3 {
-  color: #efc94c;
-}
-
-.color4 {
-  color: #e27a3f;
-}
-
-.color5 {
-  color: #df5a49;
 }
 
 header, section, footer {
@@ -36,50 +32,57 @@ header, section, footer {
 }
 
 header {
-  background: #efc94c;
 }
 
-section {
-  background: #e27a3f;
+section:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+article {
+  width: 70%;
+  float: left;
+  border: 5px solid #eaeaea;
+  padding: 15px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+aside {
+  width: 30%;
+  float: right;
 }
 
 footer {
-  background: #df5a49;
   font-size: 20px;
   color: #d1126e;
 }
 
+footer a {
+  color: #d1126e;
+  text-decoration: underline;
+}
+
 button {
-  border: 2px solid #df5a49;
-  background: #e27a3f;
-  color: #efc94c;
-  padding: 15px 10px;
+  border: 2px solid #eaeaea;
+  padding: 5px;
   text-decoration: none;
   display: inline-block;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  border-radius: 5px;
+  border-radius: 6px;
   cursor: pointer;
-  font-size: 1.1em;
 }
 
-header nav {
-  text-align: center;
+button:active {
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
-header nav a {
-  border: 2px solid #df5a49;
-  background: #e27a3f;
-  color: #efc94c;
-  padding: 15px 10px;
-  text-decoration: none;
-  display: inline-block;
-  margin-right: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  border-radius: 5px;
+aside nav ul {
+  list-style: none;
 }
 
-header nav a:hover {
-  box-shadow: none;
+aside nav ul li {
+  margin-bottom: 10px;
 }
 
 form div {
@@ -88,7 +91,7 @@ form div {
 
 form div label {
   display: block;
-  color: #efc94c;
+  color: #d1126e;
 }
 
 form div input, form div textarea {
@@ -99,19 +102,56 @@ form div input, form div textarea {
 
 div.error {
   margin: 20px;
-  color: #99260e;
+  color: #d1126e;
   font-size: 25px;
 }
+
 div.ok {
   margin: 20px;
-  color: #0b9900;
+  color: #0ba500;
   font-size: 25px;
 }
 
 form table {
   width: 100%;
+  border-collapse: collapse;
 }
+
 form table td, form table th {
   padding: 10px;
   text-align: left;
+  border-bottom: 3px solid #eaeaea;
+}
+
+form table tfoot td {
+  border-bottom: none;
+}
+
+article ul {
+  list-style: none;
+}
+
+article ul li {
+  display: inline-block;
+  height: 100px;
+}
+
+article ul li a {
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  border: 3px solid #eaeaea;
+  padding: 20px 5px 5px 5px;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+  text-align: center;
+  margin: 10px;
+}
+
+article ul li a:hover {
+  text-decoration: none;
+}
+
+article ul li a:active {
+  box-shadow: none;
 }

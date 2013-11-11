@@ -7,6 +7,14 @@
 require('../.config.php');
 require('../DB.php');
 require('../Post.php');
+require('../User.php');
+
+$user = new User();
+if(!$user->checkAuth())
+{
+  header('Location: /admin/login.php');
+  exit;
+}
 
 $_GET['page'] = ($_GET['page'] <= 0 ? 1 : $_GET['page']);
 $page = ($_GET['page'] - 1) * $GLOBALS['config']['post']['per_page'];
@@ -32,52 +40,65 @@ if(isset($_POST['save']) && isset($_POST['delete']))
 <html lang="ru-RU">
 <head>
   <meta charset="UTF-8">
-  <title>Редактирование поста</title>
+  <title>Список постов</title>
   <link rel="stylesheet" href="/includes/admin.css" />
 </head>
 <body>
 <header>
-  <nav><a href="/admin/">Главная страница</a><a href="post_edit.php">Создать пост</a></nav>
+  <h1>Список постов</h1>
 </header>
 
 <section>
-  <?= $message; ?>
-  <form action="" method="post">
-    <input type="hidden" name="save" value="1" />
+  <article>
+    <?= $message; ?>
+    <form action="" method="post">
+      <input type="hidden" name="save" value="1" />
 
-    <table>
-      <thead>
-      <tr>
-        <th>#</th>
-        <th>Название</th>
-        <th>Дата</th>
-        <th><label>Удалить <input type="checkbox" id="deleteAll" value="" /></label></th>
-      </tr>
-      </thead>
-      <?php
-      foreach($posts as $post)
-      {
-        ?>
+      <table>
+        <thead>
         <tr>
-          <td><?= $post->params['id']; ?></td>
-          <td><a href="post_edit.php?id=<?= $post->params['id']; ?>"><?= $post->params['name']; ?></a></td>
-          <td><?= $post->params['date']; ?></td>
-          <td><input type="checkbox" name="delete" value="<?= $post->params['id']; ?>" /></td>
+          <th>#</th>
+          <th>Название</th>
+          <th>Дата</th>
+          <th><label>Выбрать <br /> <input type="checkbox" id="deleteAll" value="" /></label></th>
         </tr>
-      <?
-      }
-      ?>
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td>
-          <button type="submit">Удалить</button>
-        </td>
-      </tr>
-    </table>
-  </form>
+        </thead>
+        <?php
+        foreach($posts as $post)
+        {
+          ?>
+          <tr>
+            <td><?= $post->params['id']; ?></td>
+            <td><a href="post_edit.php?id=<?= $post->params['id']; ?>"><?= $post->params['name']; ?></a></td>
+            <td><?= $post->params['date']; ?></td>
+            <td><input type="checkbox" name="delete" value="<?= $post->params['id']; ?>" /></td>
+          </tr>
+        <?
+        }
+        ?>
+        <tfoot>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>
+            <button type="submit">Удалить</button>
+          </td>
+        </tr>
+        </tfoot>
+      </table>
+    </form>
+  </article>
+  <aside>
+    <nav>
+      <ul>
+        <li><a href="/admin/">Административный раздел</a></li>
+        <li><a href="post_edit.php">Создать пост</a></li>
+      </ul>
+    </nav>
+  </aside>
 </section>
+
 
 <footer>&copy; <a href="http://cetera.ru">Cetera labs</a> 2013</footer>
 <script type="text/javascript" src="http://yandex.st/jquery/2.0.3/jquery.min.js"></script>

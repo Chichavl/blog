@@ -80,3 +80,7 @@ div.ok {
 article div h2 {
   margin-bottom: 0;
 }
+
+aside h2 {
+  padding-left: 40px;
+}

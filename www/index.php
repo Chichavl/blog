@@ -13,6 +13,8 @@ $page = ($_GET['page'] - 1) * $GLOBALS['config']['post']['per_page'];
 $post = new Post;
 $posts = $post->GetList('*', '', 'id DESC', $GLOBALS['config']['post']['per_page'], $page);
 
+$postArchive = $post->getArchive();
+
 
 ?><!doctype html>
 <html lang="ru-RU">
@@ -45,6 +47,23 @@ $posts = $post->GetList('*', '', 'id DESC', $GLOBALS['config']['post']['per_page
       <ul>
         <li><a href="/">Последние посты</a></li>
       </ul>
+
+      <?php
+        if(!empty($postArchive))
+        {
+          ?>
+          <h2>Архив постов</h2>
+          <ul>
+            <?php
+            foreach($postArchive as $archiveItem)
+            {
+              ?><li><a href="archive.php?year=<?=$archiveItem['year'];?>&month=<?=$archiveItem['month'];?>"><?=$archiveItem['month_name'];?> <?=$archiveItem['year'];?></a></li><?
+            }
+            ?>
+          </ul>
+          <?
+        }
+      ?>
     </nav>
   </aside>
 </section>

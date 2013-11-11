@@ -71,7 +71,7 @@ class Post extends DB
       ($where ? ' WHERE ' . $where : '') .
       ($order ? ' ORDER BY ' . $order : '') . ' ' .
       ($limit ? ' LIMIT ' . ($offset ? $offset . ', ' . $limit : $limit) : '') // LIMIT 10;  LIMIT 50, 10
-      );
+    );
 
     if(!$res)
       return $return;
@@ -90,5 +90,24 @@ class Post extends DB
       return true;
 
     return false;
+  }
+
+
+  public function getArchive()
+  {
+    $monthNames = array(1 => 'Январь', 2 => 'Февраль', 3 => 'Март', 4 => 'Апрель', 5 => 'Май', 6 => 'Июнь', 7 => 'Июль', 8 => 'Август', 9 => 'Сентябрь', 10 => 'Октябрь', 11 => 'Ноябрь', 12 => 'Декабрь');
+
+    // получить все года и месяца, за которые есть посты
+    $archiveList = $this->select('SELECT DATE_FORMAT(date, "%Y") year, DATE_FORMAT(date, "%c") month from post group by year, month ORDER BY year desc, month desc');
+    if(!empty($archiveList))
+    {
+      foreach($archiveList as $k => $item)
+      {
+        $archiveList[$k]['month_name'] = $monthNames[$item['month']];
+      }
+
+    }
+
+    return $archiveList;
   }
 } 

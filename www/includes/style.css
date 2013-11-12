@@ -37,9 +37,18 @@ section:after {
 article {
   width: 70%;
   float: left;
+}
+
+article div {
   border: 5px solid #eaeaea;
+  margin: 15px;
+  padding: 0 15px 15px;
+}
+
+article p {
+  border: 5px solid #eaeaea;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
   padding: 15px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 
 aside {
